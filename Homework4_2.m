@@ -55,3 +55,13 @@ h = fspecial('motion', 15, 20);
 MotionBlur = imfilter(img_04_double, h, 'conv', 'circular');
 imshow(MotionBlur);
 title('Blured Image');
+%% 4.4.2
+
+snr = [0, 0.1, 0.01, 0.001];
+
+for i = 1:length(snr)
+    wnr3 = deconvwnr(MotionBlur, h, snr(i));
+    subplot(2, 2, i);
+    imshow(wnr3);
+    title(sprintf('Restoring Noisy Image With SNR=%.3f', snr(i)));
+end
