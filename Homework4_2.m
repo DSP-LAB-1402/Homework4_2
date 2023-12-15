@@ -32,3 +32,19 @@ subplot(2, 2, 4)
 imagesc(cD);
 title('Diagonal Coefficients');
 
+%% 4.3.2
+image_sudoko = imread('image03.jpg');
+img_03_double = im2double(image_sudoko);
+figure('Name', 'Original Image');
+imshow(image_sudoko);
+
+image_size = size(image_sudoko);
+[cA, cH, cV, cD] = dwt2(image_sudoko, 'db1');
+ch = imresize(cH, 2);
+ch = ch(1:image_size(1), 1:image_size(2), :);
+ch(:, :, 2) = 0;
+ch(:, :, 3) = 0;
+image03_horiz_line = 10 * ch + 0.7 * img_03_double;
+figure('Name', 'image03 Horizental Lines');
+imshow(image03_horiz_line);
+
