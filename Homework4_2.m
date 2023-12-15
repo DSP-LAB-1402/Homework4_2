@@ -48,3 +48,10 @@ image03_horiz_line = 10 * ch + 0.7 * img_03_double;
 figure('Name', 'image03 Horizental Lines');
 imshow(image03_horiz_line);
 
+%% 4.4.1
+image_cam = imread('image04.png');
+img_04_double = im2double(image_cam);
+h = fspecial('motion', 15, 20);
+MotionBlur = imfilter(img_04_double, h, 'conv', 'circular');
+imshow(MotionBlur);
+title('Blured Image');
